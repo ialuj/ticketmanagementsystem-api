@@ -12,7 +12,6 @@ import com.hannsoftware.ticketmanagementsystem.domain.Comments;
 import com.hannsoftware.ticketmanagementsystem.domain.Ticket;
 import com.hannsoftware.ticketmanagementsystem.domain.User;
 import com.hannsoftware.ticketmanagementsystem.dto.CommentsDTO;
-import com.hannsoftware.ticketmanagementsystem.dto.TicketDTO;
 import com.hannsoftware.ticketmanagementsystem.dto.UserDTO;
 import com.hannsoftware.ticketmanagementsystem.repository.AuditLogRepository;
 import com.hannsoftware.ticketmanagementsystem.repository.CommentsRepository;

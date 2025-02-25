@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.hannsoftware.ticketmanagementsystem.domain.util.Status;
 import com.hannsoftware.ticketmanagementsystem.dto.TicketDTO;
 import com.hannsoftware.ticketmanagementsystem.utils.BusinessException;
 
