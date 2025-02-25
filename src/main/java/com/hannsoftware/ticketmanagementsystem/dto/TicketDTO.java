@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.hannsoftware.ticketmanagementsystem.domain.Comments;
 import com.hannsoftware.ticketmanagementsystem.domain.Ticket;
-import com.hannsoftware.ticketmanagementsystem.utils.Utilities;
 
 public class TicketDTO implements Serializable {
 
@@ -53,7 +52,6 @@ public class TicketDTO implements Serializable {
 		if(ticket.getPriority() != null) setPriority(ticket.getPriority().getDescription());
 		if(ticket.getCategory() != null) setCategory(ticket.getCategory().getDescription());
 		if(ticket.getStatus() != null) setStatus(ticket.getStatus().getDescription());
-		if(Utilities.listHasElements(ticket.getComments())) setComments(commentsList(ticket.getComments()));
 	}
 
 	public Long getId() {

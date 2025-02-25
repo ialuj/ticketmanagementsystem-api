@@ -46,27 +46,27 @@ public class AuditLog implements Serializable {
 	
 	@ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
-	private User user;
+	private User ticketUser;
 
 	public AuditLog() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public AuditLog(String action, Ticket ticket, User user) {
+	public AuditLog(String action, Ticket ticket, User ticketUser) {
 		super();
 		this.action = action;
 		this.ticket = ticket;
-		this.user = user;
+		this.ticketUser = ticketUser;
 	}
 
-	public AuditLog(Long id, String action, Date creationDate, Ticket ticket, User user) {
+	public AuditLog(Long id, String action, Date creationDate, Ticket ticket, User ticketUser) {
 		super();
 		this.id = id;
 		this.action = action;
 		this.creationDate = creationDate;
 		this.ticket = ticket;
-		this.user = user;
+		this.ticketUser = ticketUser;
 	}
 	
 	public AuditLog(AuditLogDTO auditLogDTO) {
@@ -74,7 +74,7 @@ public class AuditLog implements Serializable {
 		setAction(auditLogDTO.getAction());
 		setCreationDate(auditLogDTO.getCreationDate());
 		if(auditLogDTO.getTicket() != null) setTicket(new Ticket(auditLogDTO.getTicket()));
-		if(auditLogDTO.getUser() != null) setUser(new User(auditLogDTO.getUser()));
+		if(auditLogDTO.getUser() != null) setTicketUser(new User(auditLogDTO.getUser()));
 	}
 
 	public Long getId() {
@@ -109,23 +109,23 @@ public class AuditLog implements Serializable {
 		this.ticket = ticket;
 	}
 
-	public User getUser() {
-		return user;
+	public User getTicketUser() {
+		return ticketUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setTicketUser(User ticketUser) {
+		this.ticketUser = ticketUser;
 	}
 
 	@Override
 	public String toString() {
 		return "AuditLog [id=" + id + ", action=" + action + ", creationDate=" + creationDate + ", ticket=" + ticket
-				+ ", user=" + user + "]";
+				+ ", user=" + ticketUser + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(action, creationDate, id, ticket, user);
+		return Objects.hash(action, creationDate, id, ticket, ticketUser);
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public class AuditLog implements Serializable {
 		AuditLog other = (AuditLog) obj;
 		return Objects.equals(action, other.action) && Objects.equals(creationDate, other.creationDate)
 				&& Objects.equals(id, other.id) && Objects.equals(ticket, other.ticket)
-				&& Objects.equals(user, other.user);
+				&& Objects.equals(ticketUser, other.ticketUser);
 	}
 
 }

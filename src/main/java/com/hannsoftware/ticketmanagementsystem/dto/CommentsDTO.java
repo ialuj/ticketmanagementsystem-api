@@ -35,7 +35,6 @@ public class CommentsDTO implements Serializable {
 		setId(comments.getId());
 		setComment(comments.getComment());
 		setCreationDate(comments.getCreationDate());
-		if(comments.getUser() != null) setUser(new UserDTO(comments.getUser()));
 	}
 
 	public Long getId() {

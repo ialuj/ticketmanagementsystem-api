@@ -98,7 +98,7 @@ public class TicketController extends BaseController {
 	@GetMapping("/employee/{employeeId}/status")
 	public ResponseEntity<?> getTicketsByEmployeeIdAndStatus(@PathVariable Long employeeId, @PathParam(value = "status") String status, Pageable pageable) {
 		try {
-			Page<TicketDTO> tickets = ticketService.findTicketsByStatus(status, pageable);
+			Page<TicketDTO> tickets = ticketService.findTicketsByEmployeeIdAndStatus(employeeId, status, pageable);
 			return ResponseEntity.ok(convertFromPageToList(tickets));
 		} catch (BusinessException e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

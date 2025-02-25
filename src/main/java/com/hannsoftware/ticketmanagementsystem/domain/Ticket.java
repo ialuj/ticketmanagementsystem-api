@@ -70,7 +70,7 @@ public class Ticket implements Serializable {
 	
 	@ManyToOne
     @JoinColumn(name = "USER_ID")
-	private User user;
+	private User ticketUser;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ticket")
 	private List<Comments> comments;
@@ -80,18 +80,18 @@ public class Ticket implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ticket(String title, String description, Priority priority, Category category, User employee, User user) {
+	public Ticket(String title, String description, Priority priority, Category category, User employee, User ticketUser) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.priority = priority;
 		this.category = category;
 		this.employee = employee;
-		this.user = user;
+		this.ticketUser = ticketUser;
 	}
 
 	public Ticket(Long id, String title, String description, Date creationDate, Priority priority, Category category,
-			Status status, User employee, User user, List<Comments> comments) {
+			Status status, User employee, User ticketUser, List<Comments> comments) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -101,7 +101,7 @@ public class Ticket implements Serializable {
 		this.category = category;
 		this.status = status;
 		this.employee = employee;
-		this.user = user;
+		this.ticketUser = ticketUser;
 		this.comments = comments;
 	}
 	
@@ -178,12 +178,12 @@ public class Ticket implements Serializable {
 		this.employee = employee;
 	}
 
-	public User getUser() {
-		return user;
+	public User getTicketUser() {
+		return ticketUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setTicketUser(User ticketUser) {
+		this.ticketUser = ticketUser;
 	}
 
 	public List<Comments> getComments() {

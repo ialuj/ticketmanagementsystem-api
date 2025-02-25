@@ -33,7 +33,7 @@ public class Comments implements Serializable {
 	@Column(name = "ID", nullable = false)
 	private Long id;
 	
-	@Column(name = "COMMENT", nullable = false)
+	@Column(name = "COMMENT_VALUE", nullable = false)
 	private String comment;
 	
 	@Column(name = "CREATION_DATE")

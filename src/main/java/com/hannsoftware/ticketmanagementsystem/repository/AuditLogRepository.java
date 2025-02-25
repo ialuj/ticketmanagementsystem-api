@@ -10,6 +10,6 @@ public interface AuditLogRepository extends JpaRepository<AuditLog, Long> {
 	
 	public Page<AuditLog> findByTicketId(Long ticketId, Pageable pageable);
 	
-	public Page<AuditLog> findByUserId(Long userId, Pageable pageable);
+	public Page<AuditLog> findByTicketUserId(Long ticketUserId, Pageable pageable);
 
 }

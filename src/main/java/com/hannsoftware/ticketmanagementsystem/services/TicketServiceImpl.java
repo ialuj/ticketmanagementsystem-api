@@ -97,9 +97,13 @@ public class TicketServiceImpl implements TicketService {
 		Ticket ticket = optTicket.get();
 		ticket.setStatus(status2);
 		User user = optUser.get();
-		ticket.setUser(user);
+		ticket.setTicketUser(user);
 		
 		ticketRepository.save(ticket);
+		
+		AuditLog auditLog = new AuditLog("Ticket Update Status", ticket, user);
+		auditLog.setCreationDate(DateUtils.getCurrentDate());
+		auditLogRepository.save(auditLog);
 		
 		return new TicketDTO(ticket);
 	}

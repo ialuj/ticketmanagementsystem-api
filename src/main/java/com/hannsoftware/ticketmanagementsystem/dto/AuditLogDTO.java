@@ -38,8 +38,6 @@ public class AuditLogDTO implements Serializable {
 		setId(auditLog.getId());
 		setAction(auditLog.getAction());
 		setCreationDate(auditLog.getCreationDate());
-		if(auditLog.getTicket() != null) setTicket(new TicketDTO(auditLog.getTicket()));
-		if(auditLog.getUser() != null) setUser(new UserDTO(auditLog.getUser()));
 	}
 
 	public Long getId() {

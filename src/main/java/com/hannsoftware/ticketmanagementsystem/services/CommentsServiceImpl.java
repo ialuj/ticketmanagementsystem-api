@@ -12,6 +12,8 @@ import com.hannsoftware.ticketmanagementsystem.domain.Comments;
 import com.hannsoftware.ticketmanagementsystem.domain.Ticket;
 import com.hannsoftware.ticketmanagementsystem.domain.User;
 import com.hannsoftware.ticketmanagementsystem.dto.CommentsDTO;
+import com.hannsoftware.ticketmanagementsystem.dto.TicketDTO;
+import com.hannsoftware.ticketmanagementsystem.dto.UserDTO;
 import com.hannsoftware.ticketmanagementsystem.repository.AuditLogRepository;
 import com.hannsoftware.ticketmanagementsystem.repository.CommentsRepository;
 import com.hannsoftware.ticketmanagementsystem.repository.TicketRepository;
@@ -84,6 +86,8 @@ public class CommentsServiceImpl implements CommentsService {
 		List<CommentsDTO> commentsDTOs = new ArrayList<>(commentsList.size());
 		for(Comments comments: commentsList) {
 			CommentsDTO commentsDTO = new CommentsDTO(comments);
+			UserDTO userDTO = new UserDTO(comments.getUser());
+			commentsDTO.setUser(userDTO);
 			commentsDTOs.add(commentsDTO);
 		}
 		return commentsDTOs;

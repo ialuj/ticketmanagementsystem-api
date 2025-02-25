@@ -4,7 +4,7 @@ import io.micrometer.common.util.StringUtils;
 
 public enum Status {
 	
-    NEW(0, "New"), IN_PROGRESS(1, "In Progess"), RESOLVED(2, "Resolved");
+    NEW(0, "New"), IN_PROGRESS(1, "In Progress"), RESOLVED(2, "Resolved");
 	
 	private Integer code;
 	
@@ -44,7 +44,8 @@ public enum Status {
 	public static Status toEnum(String value) {
 		if(value == null || StringUtils.isBlank(value)) return null;
 		for (Status status: Status.values()) {
-			if(value.equalsIgnoreCase(status.getDescription())) {
+			String description = status.getDescription();
+			if(value.equalsIgnoreCase(description)) {
 				return status;
 			}
 		}

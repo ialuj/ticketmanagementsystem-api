@@ -16,12 +16,14 @@ services:
     container_name: oracle-itms-hann-db
     image: oracledb19c/oracle.19.3.0-ee:oracle19.3.0-ee
     environment:
-      - ORACLE_SID=ITMS_DB
+      - ORACLE_SID=ITMSDB
+      - ORACLE_PDB=ITMSPDB
       - ORACLE_PASSWORD=oracle
     ports:
       - "1521:1521"
     networks:
       - itms-network
+    restart: always  # Corrigido o alinhamento desta linha
 
 networks:
   itms-network:

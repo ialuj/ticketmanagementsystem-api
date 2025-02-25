@@ -19,10 +19,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.hannsoftware.ticketmanagementsystem.domain.Ticket;
-import com.hannsoftware.ticketmanagementsystem.domain.User;
 import com.hannsoftware.ticketmanagementsystem.domain.util.Category;
 import com.hannsoftware.ticketmanagementsystem.domain.util.Priority;
-import com.hannsoftware.ticketmanagementsystem.domain.util.Role;
 import com.hannsoftware.ticketmanagementsystem.domain.util.Status;
 import com.hannsoftware.ticketmanagementsystem.dto.TicketDTO;
 import com.hannsoftware.ticketmanagementsystem.repository.TicketRepository;
@@ -39,10 +37,6 @@ public class TicketServiceImpl {
     
     private Ticket ticket;
     
-    private User employee;
-    
-    private User user;
-    
     @BeforeEach
     public void setUp() {
     	ticket = new Ticket();
@@ -52,22 +46,6 @@ public class TicketServiceImpl {
     	ticket.setPriority(Priority.toEnum("Low"));
     	ticket.setCategory(Category.toEnum("Network"));
     	ticket.setStatus(Status.toEnum("New"));
-    	
-    	employee = new User();
-    	employee.setId(10L);
-    	employee.setFullName("John Doe");
-    	employee.setUsername("john.doe");
-    	employee.setPassword("hndlbmkehjwHoNptg38zO5V82U5xozIkgGwxitI/AM8=");
-    	employee.setSalt("itmsystem");
-    	employee.setRole(Role.toEnum("Employee"));
-    	
-    	employee = new User();
-    	employee.setId(11L);
-    	employee.setFullName("Anna Doe");
-    	employee.setUsername("anna.doe");
-    	employee.setPassword("hndlbmkehjwHoNptg38zO5V82U5xozIkgGwxitI/AM8=");
-    	employee.setSalt("itmsystem");
-    	employee.setRole(Role.toEnum("IT Support"));
     }
     
     @Test
@@ -76,7 +54,7 @@ public class TicketServiceImpl {
         when(ticketRepository.save(any(Ticket.class))).thenReturn(ticket);
 
         // Act
-        TicketDTO createdTicket = ticketService.createTicket(employee.getId(), new TicketDTO(ticket));
+        TicketDTO createdTicket = ticketService.createTicket(10L, new TicketDTO(ticket));
 
         // Assert
         assertNotNull(createdTicket);

@@ -1,12 +1,18 @@
 package com.hannsoftware.ticketmanagementsystem.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.hannsoftware.ticketmanagementsystem.domain.AuditLog;
 import com.hannsoftware.ticketmanagementsystem.dto.AuditLogDTO;
+import com.hannsoftware.ticketmanagementsystem.dto.TicketDTO;
+import com.hannsoftware.ticketmanagementsystem.dto.UserDTO;
 import com.hannsoftware.ticketmanagementsystem.repository.AuditLogRepository;
 import com.hannsoftware.ticketmanagementsystem.utils.BusinessException;
 
@@ -19,7 +25,18 @@ public class AuditLogServiceImpl implements AuditLogService {
 	@Override
 	public Page<AuditLogDTO> getAllAuditLogs(Pageable pageable) throws BusinessException {
 		Page<AuditLog> auditLogPage = auditLogRepository.findAll(pageable);
-		return convertAuditLogPageToDTOPage(auditLogPage);
+		List<AuditLogDTO> auditLogDTOs = new ArrayList<>();
+		auditLogPage.forEach(auditLog -> {
+			TicketDTO ticketDTO = new TicketDTO(auditLog.getTicket());
+			UserDTO userDTO = new UserDTO(auditLog.getTicketUser());
+			AuditLogDTO auditLogDTO = new AuditLogDTO(auditLog);
+			auditLogDTO.setUser(userDTO);
+			auditLogDTO.setTicket(ticketDTO);
+			auditLogDTOs.add(auditLogDTO);
+		});
+		Page<AuditLogDTO> page = new PageImpl<>(auditLogDTOs, Pageable.unpaged(), auditLogDTOs.size());
+		page.and(auditLogDTOs);
+		return page;
 	}
 
 	@Override
@@ -30,7 +47,7 @@ public class AuditLogServiceImpl implements AuditLogService {
 
 	@Override
 	public Page<AuditLogDTO> getAuditLogsByUserId(Long userId, Pageable pageable) throws BusinessException {
-		Page<AuditLog> auditLogPage = auditLogRepository.findByUserId(userId, pageable);
+		Page<AuditLog> auditLogPage = auditLogRepository.findByTicketUserId(userId, pageable);
 		return convertAuditLogPageToDTOPage(auditLogPage);
 	}
 	
